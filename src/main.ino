@@ -1,5 +1,6 @@
 
 #include <ESP8266WiFi.h>
+#include <Timer.h>
 #include <WiFiClient.h>
 
 #include <ESP8266WebServer.h>
@@ -8,6 +9,7 @@ const char *ssid = "WiFiGaragem";
 const char *password = "senhaGaragem";
 
 ESP8266WebServer server(80);
+Timer t;
 
 /* Just a little test message.  Go to http://192.168.4.1 in a web browser
  * connected to this access point to see it.
@@ -32,8 +34,13 @@ void setup() {
   server.on("/api/sensor", handleRoot);
   server.on("/api/control", handleRoot);
 
+  dht_setup();
+
   server.begin();
   Serial.println("HTTP server started");
 }
 
-void loop() { server.handleClient(); }
+void loop() {
+  t.update();
+  server.handleClient();
+}
