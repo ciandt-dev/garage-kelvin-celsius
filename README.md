@@ -13,7 +13,7 @@ More information you can see on our [page](http://ciandt-dev.github.io/garage-ke
 - GIT
 - [Arduino](https://www.arduino.cc/en/Main/Software) 
 - [PlatformIO](http://platformio.org/)
-- [Fritzing](http://fritzing.org/download/)
+- [Fritzing](http://fritzing.org/download/) or [123d](https://123d.circuits.io)
 
 ## Build instructions
 
