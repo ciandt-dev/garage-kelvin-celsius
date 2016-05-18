@@ -2,11 +2,11 @@
 #include "DHT.h"
 
 #define DHTPIN 4
-#define DHTTYPE DHT11
+#define DHTTYPE DHT22
 
 DHT dht(DHTPIN, DHTTYPE, 15);
 
-float hum, temp;
+
 
 void dht_setup() { t.every(5000, dht_update); }
 
