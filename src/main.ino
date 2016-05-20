@@ -41,6 +41,7 @@ void setup() {
   server.on("/api/control", handleRoot);
 
   dht_setup();
+  remote_setup();
 
   server.begin();
   Serial.println("HTTP server started");

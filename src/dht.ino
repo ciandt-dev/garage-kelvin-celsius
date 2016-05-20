@@ -1,7 +1,7 @@
 // Aqui fica o codigo da medição de temperatura
 #include "DHT.h"
 
-#define DHTPIN 4
+#define DHTPIN D2
 #define DHTTYPE DHT22
 
 DHT dht(DHTPIN, DHTTYPE, 15);
