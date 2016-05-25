@@ -1,7 +1,7 @@
  /***************************************************
  * IRremote for ESP8266
- * 
- * Based on the IRremote library for Arduino by Ken Shirriff 
+ *
+ * Based on the IRremote library for Arduino by Ken Shirriff
  * Version 0.11 August, 2009
  * Copyright 2009 Ken Shirriff
  * For details, see http://arcfn.com/2009/08/multi-protocol-infrared-remote-library.html
@@ -150,7 +150,7 @@ private:
 
 // Some useful constants
 #define USECPERTICK 50  // microseconds per clock interrupt tick
-#define RAWBUF 100 // Length of raw duration buffer
+#define RAWBUF 250 // Length of raw duration buffer
 
 // Marks tend to be 100us too long, and spaces 100us too short
 // when received due to sensor lag.
