@@ -9,7 +9,7 @@
     <meta name="theme-color" content="rgb(63,81,181)">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-
+    <title>Smart AC</title>
     <script>
     angular.module('acApp', [])
       .controller('AcController', ['$interval', '$http', function($interval, $http) {
@@ -39,11 +39,6 @@
           vm.tempControl = vm.tempControl - 1;
         };
         $interval(function(){
-          // if(vm.temp < 25) {
-          //   vm.temp = 25;
-          // } else {
-          //   vm.temp = 24;
-          // }
           getTemp();
         }, 5000);
       }]);
@@ -71,34 +66,34 @@
       </div>
       <main class="mdl-layout__content">
         <div class="page-content" >
-
-          <div class="mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__title mdl-card--expand">
-              <h2 class="mdl-card__title-text">Sensors</h2>
+          <div class="mdl-grid">
+            <div class="mdl-cell mdl-card mdl-shadow--2dp">
+              <div class="mdl-card__title mdl-card--expand">
+                <h2 class="mdl-card__title-text">Sensors</h2>
+              </div>
+              <div class="mdl-card__supporting-text">
+                <h3>{{vm.temp}} C</h3>
+                <h3>{{vm.hum}}% </h3>
+              </div>
             </div>
-            <div class="mdl-card__supporting-text">
-              <h3>{{vm.temp}} C</h3>
-              <h3>{{vm.hum}}% </h3>
+
+            <div class="mdl-cell mdl-card mdl-shadow--2dp">
+              <div class="mdl-card__title mdl-card--expand">
+                <h2 class="mdl-card__title-text">AC Control</h2>
+              </div>
+              <div class="mdl-card__supporting-text">
+                <h3>{{vm.tempControl}} C</h3>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"  ng-click="vm.add()">
+                  <i class="material-icons">add</i>
+                </a>
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="vm.decrease()">
+                  <i class="material-icons">remove</i>
+                </a>
+              </div>
             </div>
           </div>
-
-          <div class="mdl-card mdl-shadow--2dp">
-            <div class="mdl-card__title mdl-card--expand">
-              <h2 class="mdl-card__title-text">AC Control</h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-              <h3>{{vm.tempControl}} C</h3>
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"  ng-click="vm.add()">
-                <i class="material-icons">add</i>
-              </a>
-              <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="vm.decrease()">
-                <i class="material-icons">remove</i>
-              </a>
-            </div>
-          </div>
-
         </div>
       </main>
     </div>
