@@ -13,17 +13,6 @@ Timer t;
 
 float hum, temp;
 
-/* Just a little test message.  Go to http://192.168.4.1 in a web browser
- * connected to this access point to see it.
- */
-void handleRoot() {
-  server.send(200, "text/html", "<h1>You are connected</h1>");
-}
-
-
-void handleSensor() {
-  server.send(200, "application/json", "{ temp: "+ String(temp) +", hum: "+ String(hum) +" }");
-}
 void setup() {
   delay(200);
   Serial.begin(9600);
@@ -35,15 +24,11 @@ void setup() {
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("AP IP address: ");
   Serial.println(myIP);
-  server.on("/", handleRoot);
 
-  server.on("/api/sensor", handleSensor);
-  server.on("/api/control", handleRoot);
-
+  webserver_setup();
   dht_setup();
   remote_setup();
 
-  server.begin();
   Serial.println("HTTP server started");
 }
 

@@ -7,14 +7,31 @@
     <link rel="stylesheet" href="icon.css">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="rgb(63,81,181)">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
 
     <script>
     angular.module('acApp', [])
-      .controller('AcController', ["$interval", function($interval) {
+      .controller('AcController', ['$interval', '$http', function($interval, $http) {
         var vm = this;
-        vm.temp = 25;
-        vm.hum = 60;
+        vm.temp = "-";
+        vm.hum = "-";
         vm.tempControl = 24;
+
+        getTemp = function(){
+          var req = {
+            method: 'GET',
+            url: '/api/sensor'
+          }
+
+          $http(req).then(function(response){
+            vm.temp = response.data.temp;
+            vm.hum = response.data.hum;
+          }, function(){
+            console.log("Erro na requisição");
+          });
+        }
+
         vm.add = function(){
           vm.tempControl = vm.tempControl + 1;
         };
@@ -22,11 +39,12 @@
           vm.tempControl = vm.tempControl - 1;
         };
         $interval(function(){
-          if(vm.temp < 25) {
-            vm.temp = 25;
-          } else {
-            vm.temp = 24;
-          }
+          // if(vm.temp < 25) {
+          //   vm.temp = 25;
+          // } else {
+          //   vm.temp = 24;
+          // }
+          getTemp();
         }, 5000);
       }]);
     </script>
