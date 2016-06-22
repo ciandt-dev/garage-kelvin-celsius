@@ -7,11 +7,19 @@ void handleSensor() {
   server.send(200, "application/json", "{ \"temp\": \""+ String(temp) +"\", \"hum\": \""+ String(hum) +"\" }");
 }
 
+void handleControl() {
+
+  String message = "";
+  if(server.hasArg("plain")){
+    remote_sendCommand(server.arg("plain").toInt(), 2);
+  }
+	server.send ( 200, "text/plain", "OK" );
+}
 
 void webserver_setup(){
   SPIFFS.begin();
   server.on("/api/sensor", handleSensor);
-  server.on("/api/control", handleSensor);
+  server.on("/api/control", handleControl);
   server.onNotFound([](){
   if(!webserver_handleFileRead(server.uri()))
     server.send(404, "text/plain", "FileNotFound");
@@ -39,7 +47,7 @@ String webserver_getContentType(String filename){
 bool webserver_handleFileRead(String path){
 
   Serial.println("handleFileRead: " + path);
-  if(path.endsWith("/")) path += "index.htm";
+  if(path.endsWith("/")) path += "index.html";
   String contentType = webserver_getContentType(path);
   String pathWithGz = path + ".gz";
   if(SPIFFS.exists(pathWithGz) || SPIFFS.exists(path)){

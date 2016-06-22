@@ -22,7 +22,7 @@
           var req = {
             method: 'GET',
             url: '/api/sensor'
-          }
+          };
 
           $http(req).then(function(response){
             vm.temp = response.data.temp;
@@ -31,12 +31,21 @@
             console.log("Erro na requisição");
           });
         }
-
+        function sendTemp(){
+          var req = {
+            method: 'POST',
+            url: '/api/control',
+            data: vm.tempControl
+          };
+          $http(req);
+        }
         vm.add = function(){
           vm.tempControl = vm.tempControl + 1;
+          sendTemp();
         };
         vm.decrease = function(){
           vm.tempControl = vm.tempControl - 1;
+          sendTemp();
         };
         $interval(function(){
           getTemp();
