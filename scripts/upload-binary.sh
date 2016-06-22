@@ -4,6 +4,7 @@
   #copy data we're interested in to other place
   mkdir -p $HOME/$TRAVIS_BUILD_NUMBER 
   cp -R .pioenvs/nodemcuv2/firmware.elf $HOME/$TRAVIS_BUILD_NUMBER/firmware.elf
+  cp -R .pioenvs/nodemcuv2/firmware.bin $HOME/$TRAVIS_BUILD_NUMBER/firmware.bin
 
   #go to home and setup git
   cd $HOME
