@@ -11,6 +11,9 @@ const char *password = "senhaGaragem";
 ESP8266WebServer server(80);
 Timer t;
 
+long voteStartTime = 0;
+
+
 float hum, temp;
 
 void setup() {

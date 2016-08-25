@@ -3,8 +3,32 @@
 #include <ESP8266WebServer.h>
 #include <FS.h>
 
-void handleSensor() {
-  server.send(200, "application/json", "{ \"temp\": \""+ String(temp) +"\", \"hum\": \""+ String(hum) +"\" }");
+/**
+
+POST /api/vote/
+-2
+
+*/
+
+
+void handleVote() {
+  server.send(200, "application/json","OK");
+  Serial.print("Voto: ");
+  Serial.println(server.client().remoteIP().toString());
+}
+
+/**
+{ temp": "24.20", "hum": "42.90", "status": "voting", "votes": "[0,1,2,-2,-1,-1]", "timeRemaining": "300" }
+*/
+
+void handleStatus() {
+  server.send(200, "application/json",
+  "{ \"temp\": \""+ String(temp) +
+  "\", \"hum\": \""+ String(hum) +
+  "\", \"status\": \""+ "voting" +
+  "\", \"votes\": \""+ "[0,1,2,-2,-1,-1]" +
+  "\", \"timeRemaining\": \""+ String(300)
+  +"\" }");
 }
 
 void handleControl() {
@@ -18,7 +42,8 @@ void handleControl() {
 
 void webserver_setup(){
   SPIFFS.begin();
-  server.on("/api/sensor", handleSensor);
+  server.on("/api/status", handleStatus);
+  server.on("/api/vote", handleVote);
   server.on("/api/control", handleControl);
   server.onNotFound([](){
   if(!webserver_handleFileRead(server.uri()))

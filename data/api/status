@@ -1,0 +1,7 @@
+{
+  "temp" : 26.4,
+  "hum" : 56.3,
+  "acTemp" : 25,
+  "status" : "IDLE", // VOTING, BLOCKED
+  "remainingTime": 123 // Seconds
+}
