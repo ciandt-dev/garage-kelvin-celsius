@@ -17,6 +17,7 @@
         vm.temp = "-";
         vm.hum = "-";
         vm.tempControl = 24;
+        vm.votes = [];
 
         getTemp = function(){
           var req = {
@@ -47,6 +48,11 @@
           vm.tempControl = vm.tempControl - 1;
           sendTemp();
         };
+
+        vm.sendVote = function(temp) {
+          vm.votes.push(temp);
+        };
+
         $interval(function(){
           getTemp();
         }, 5000);
@@ -104,6 +110,22 @@
             </div>
           </div>
         </div>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"  ng-click="vm.sendVote(-2)">
+          --
+        </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"  ng-click="vm.sendVote(-1)">
+          -
+        </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"  ng-click="vm.sendVote(0)">
+          N
+        </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"  ng-click="vm.sendVote(1)">
+          +
+        </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"  ng-click="vm.sendVote(2)">
+          ++
+        </a>
+        {{vm.votes}}
       </main>
     </div>
   </body>
