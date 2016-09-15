@@ -22,7 +22,7 @@
         getTemp = function(){
           var req = {
             method: 'GET',
-            url: '/api/sensor'
+            url: '/api/status'
           };
 
           $http(req).then(function(response){
@@ -40,6 +40,14 @@
           };
           $http(req);
         }
+        function sendVote(vote){
+          var req = {
+            method: 'POST',
+            url: '/api/vote',
+            data: vote
+          };
+          $http(req);
+        }
         vm.add = function(){
           vm.tempControl = vm.tempControl + 1;
           sendTemp();
@@ -51,6 +59,7 @@
 
         vm.sendVote = function(temp) {
           vm.votes.push(temp);
+          sendVote(temp);
         };
 
         $interval(function(){
