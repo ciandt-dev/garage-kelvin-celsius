@@ -38,6 +38,8 @@ void setup() {
   wifiManager.setDebugOutput(true);
   wifiManager.setTimeout(10);
 
+  // wifiManager.setSTAStaticIPConfig(IPAddress(192,168,4,10), IPAddress(192,168,4,1), IPAddress(255,255,255,0));
+
   if(!wifiManager.startConfigPortal("nomeA")){
     Serial.println("fail to connect");
     delay(3000);
@@ -46,11 +48,13 @@ void setup() {
   } else {
     delay(5000);
     Serial.println("aew");
+    Serial.println("IP do WiFi:");
+    Serial.println(WiFi.localIP());
   }
 
   //dht_setup();
   //remote_setup();
-
+  // wifiManager.autoConnect("nomeB");
   Serial.println("HTTP server started");
 }
 
