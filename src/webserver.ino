@@ -10,10 +10,30 @@ POST /api/vote/
 
 */
 
+class IpWithVote {
+  public:
+    int vote;
+    String ip;
+};
+
+IpWithVote allVotes[10];
+int numberOfVotes = 0;
+
 void handleVote() {
+  IpWithVote *newVote;
   server.send(200, "application/json","OK");
   Serial.print("Voto: ");
+  // TODO descobrir como extrair o voto
+  //Serial.println(server.);
   Serial.println(server.client().remoteIP().toString());
+
+  newVote = new IpWithVote();
+  newVote->vote = 1;
+  newVote->ip = server.client().remoteIP().toString();
+
+  allVotes[numberOfVotes] = *newVote;
+  Serial.println(allVotes[numberOfVotes].ip + ' ' + allVotes[numberOfVotes].vote);
+  numberOfVotes++;
 }
 
 /**
