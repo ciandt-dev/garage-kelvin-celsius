@@ -2,6 +2,8 @@
   "temp" : 26.4,
   "hum" : 56.3,
   "acTemp" : 25,
-  "status" : "IDLE", // VOTING, BLOCKED
-  "remainingTime": 123 // Seconds
+  "status" : 1,
+  "remainingTime": 123, 
+  "totalTime": 300,
+  "votes" : [0,-1,-1,1,2,2]
 }
