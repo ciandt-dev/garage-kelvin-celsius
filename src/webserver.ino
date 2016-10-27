@@ -23,6 +23,7 @@ void handleVote() {
   IpWithVote *newVote;
   server.send(200, "application/json","OK");
   Serial.print("Voto: ");
+  Serial.println(server.arg("plain"));
   // TODO descobrir como extrair o voto
   //Serial.println(server.);
   Serial.println(server.client().remoteIP().toString());
@@ -44,9 +45,9 @@ void handleStatus() {
   server.send(200, "application/json",
   "{ \"temp\": \""+ String(temp) +
   "\", \"hum\": \""+ String(hum) +
-  "\", \"status\": \""+ "voting" +
-  "\", \"votes\": \""+ "[0,1,2,-2,-1,-1]" +
-  "\", \"timeRemaining\": \""+ String(300)
+  "\", \"status\": \""+ 0 +
+  "\", \"votes\": "+ "[0,1,2,-2,-1,-1]" +
+  ", \"timeRemaining\": \""+ String(300)
   +"\" }");
 }
 
