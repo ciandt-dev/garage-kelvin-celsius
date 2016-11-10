@@ -22,14 +22,9 @@ int numberOfVotes = 0;
 void handleVote() {
   IpWithVote *newVote;
   server.send(200, "application/json","OK");
-  Serial.print("Voto: ");
-  Serial.println(server.arg("plain"));
-  // TODO descobrir como extrair o voto
-  //Serial.println(server.);
-  Serial.println(server.client().remoteIP().toString());
 
   newVote = new IpWithVote();
-  newVote->vote = 1;
+  newVote->vote = server.arg("plain").toInt();
   newVote->ip = server.client().remoteIP().toString();
 
   allVotes[numberOfVotes] = *newVote;
@@ -37,16 +32,20 @@ void handleVote() {
   numberOfVotes++;
 }
 
-/**
-{ temp": "24.20", "hum": "42.90", "status": "voting", "votes": "[0,1,2,-2,-1,-1]", "timeRemaining": "300" }
-*/
-
 void handleStatus() {
+  String votes = "[";
+  for(int i=0; i<numberOfVotes; i++) {
+    votes.concat(allVotes[i].vote);
+    if(i<numberOfVotes-1) {
+      votes.concat(",");
+    }
+  }
+  votes.concat("]");
   server.send(200, "application/json",
   "{ \"temp\": \""+ String(temp) +
   "\", \"hum\": \""+ String(hum) +
   "\", \"status\": \""+ 0 +
-  "\", \"votes\": "+ "[0,1,2,-2,-1,-1]" +
+  "\", \"votes\": "+ votes +
   ", \"timeRemaining\": \""+ String(300)
   +"\" }");
 }
