@@ -4,26 +4,21 @@
 
 ## Objective
 
-Project Kelvin-Celsius is a internal CI&T Garage initiave to build a democracy temperature environment. 
+Provide a easy way to control air conditiner temperature based on the felling of people on the enviroment. It provides a web interface that user can vote to ajust the temperature.
+After users vote, it send IR commands to the AC unit to ajust the temperature.
 
-More information you can see on our [page](http://ciandt-dev.github.io/garage-kelvin-celsius/) or [wiki](https://github.com/ciandt-dev/garage-kelvin-celsius/wiki). 
 
-## Needed Tools
+## Build Tools
 
 - GIT
-- [Arduino](https://www.arduino.cc/en/Main/Software) 
 - [PlatformIO](http://platformio.org/)
-- [Fritzing](http://fritzing.org/download/) or [123d](https://123d.circuits.io)
 
 ## Build instructions
 
 Just checkout and import on PlatformIO. 
 
-## Run instructions
+## Hardware
 
 Build like this: 
 
 ![Board](https://raw.githubusercontent.com/ciandt-dev/garage-kelvin-celsius/master/doc/images/board-v1.png)
-
-
-
