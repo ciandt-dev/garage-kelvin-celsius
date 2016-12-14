@@ -21,3 +21,7 @@ Just checkout and import on PlatformIO.
 Build like this: 
 
 ![Board](https://raw.githubusercontent.com/ciandt-dev/garage-kelvin-celsius/master/doc/images/board-v1.png)
+
+## Web Interface
+
+You canc check how the interface looks [here](http://ciandt-dev.github.io/garage-kelvin-celsius/data/)
