@@ -3,33 +3,24 @@
 #include <ESP8266WebServer.h>
 #include <FS.h>
 
-/**
-
-POST /api/vote/
--2
-
-*/
-
-class IpWithVote {
-  public:
-    int vote;
-    String ip;
-};
-
-IpWithVote allVotes[10];
-int numberOfVotes = 0;
-
 void handleVote() {
-  IpWithVote *newVote;
-  server.send(200, "application/json","OK");
+  if(state == VOTING || state == IDLE ) {
+    if(state == IDLE) {
+      startVoting();
+    }
+    IpWithVote *newVote;
+    newVote = new IpWithVote();
+    newVote->vote = server.arg("plain").toInt();
+    newVote->ip = server.client().remoteIP().toString();
 
-  newVote = new IpWithVote();
-  newVote->vote = server.arg("plain").toInt();
-  newVote->ip = server.client().remoteIP().toString();
+    allVotes[numberOfVotes] = *newVote;
+    Serial.println(allVotes[numberOfVotes].ip + ' ' + allVotes[numberOfVotes].vote);
+    numberOfVotes++;
+    server.send(200, "application/json","OK");
+  } else {
+    server.send(422, "application/json","NOT VOTING");
+  }
 
-  allVotes[numberOfVotes] = *newVote;
-  Serial.println(allVotes[numberOfVotes].ip + ' ' + allVotes[numberOfVotes].vote);
-  numberOfVotes++;
 }
 
 void handleStatus() {
