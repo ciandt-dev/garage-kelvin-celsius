@@ -4,8 +4,7 @@
 
 ## Objective
 
-Provide a easy way to control air conditiner temperature based on the felling of people on the enviroment. It provides a web interface that user can vote to ajust the temperature.
-After users vote, it send IR commands to the AC unit to ajust the temperature.
+Provide an easy way to control air conditioner temperature based on the felling of people on the enviroment. It provides a web interface that user can vote to adjust the temperature. After user's vote, it send IR commands to the AC unit to set the temperature.
 
 
 ## Build Tools
